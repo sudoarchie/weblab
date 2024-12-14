@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PosterSavvy - Your Art Destination</title>
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* Header styles */
+    header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e5e7eb;
+      z-index: 50;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 4rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: bold;
+      font-size: 1.25rem;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #666;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #333;
+    }
+
+    .cart-icon {
+      position: relative;
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: #3b82f6;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: bold;
+      width: 1rem;
+      height: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+    }
+
+    /* Hero section */
+    .hero {
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      font-size: 1.25rem;
+    }
+
+    .search-form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 0.5rem 1rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.375rem;
+      font-size: 1rem;
+    }
+
+    .button {
+      background-color: #3b82f6;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .button:hover {
+      background-color: #2563eb;
+    }
+
+    /* Featured posters */
+    .featured {
+      background-color: #f9fafb;
+      padding: 4rem 0;
+    }
+
+    .featured h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .poster-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 0 1rem;
+    }
+
+    .poster-card {
+      position: relative;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      background-color: white;
+    }
+
+    .poster-card img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .poster-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .poster-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 1rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .poster-card:hover .poster-overlay {
+      opacity: 1;
+    }
+
+    .poster-overlay h3 {
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .poster-overlay p {
+      color: #e5e7eb;
+      margin-bottom: 1rem;
+    }
+
+    /* About section */
+    .about {
+      padding: 4rem 0;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (min-width: 1024px) {
+      .about-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .about-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .about-content p {
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .features-list {
+      list-style: none;
+    }
+
+    .features-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .about-image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #e5e7eb;
+      padding: 2rem 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-section h3 {
+      font-size: 1.125rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links a {
+      color: #666;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #333;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .search-form {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="container">
+      <a href="/" class="logo">
+        <span>PosterSavvy</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/posters">Posters</a></li>
+        <li><a href="/categories">Categories</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+      <div class="cart-icon">
+        🛒
+        <span class="cart-count">3</span>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Decorate Your Space with PosterSavvy</h1>
+        <p>Discover a wide range of high-quality posters for every style and taste. Transform your walls today!</p>
+        <form class="search-form">
+          <input type="search" placeholder="Search posters..." class="search-input">
+          <button type="submit" class="button">Search</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="featured">
+      <div class="container">
+        <h2>Featured Posters</h2>
+        <div class="poster-grid">
+          <div class="poster-card">
+            <img src="https://images.unsplash.com/photo-1731484636405-35018e2a8a86?w=500&auto=format&fit=crop&q=60"
+              alt="Fashion Poster">
+            <div class="poster-overlay">
+              <h3>Urban Fashion</h3>
+              <p>$29.99</p>
+              <button class="button">Add to Cart</button>
+            </div>
+          </div>
+          <div class="poster-card">
+            <img src="https://images.unsplash.com/photo-1726266852957-b1549c5c9fcb?w=500&auto=format&fit=crop&q=60"
+              alt="Mountain Landscape">
+            <div class="poster-overlay">
+              <h3>Mountain Vista</h3>
+              <p>$24.99</p>
+              <button class="button">Add to Cart</button>
+            </div>
+          </div>
+          <div class="poster-card">
+            <img src="https://images.unsplash.com/photo-1719937050679-c3a2c9c67b0f?w=500&auto=format&fit=crop&q=60"
+              alt="Coastal Scene">
+            <div class="poster-overlay">
+              <h3>Coastal Dreams</h3>
+              <p>$34.99</p>
+              <button class="button">Add to Cart</button>
+            </div>
+          </div>
+          <div class="poster-card">
+            <img
+              src="https://plus.unsplash.com/premium_photo-1723601012605-269bee3a4b9c?w=500&auto=format&fit=crop&q=60"
+              alt="Abstract Art">
+            <div class="poster-overlay">
+              <h3>Abstract Harmony</h3>
+              <p>$39.99</p>
+              <button class="button">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-content">
+            <h2>About PosterSavvy</h2>
+            <p>At PosterSavvy, we believe in the power of art to transform spaces and inspire minds. Our curated
+              collection features works from emerging artists and timeless classics, ensuring there's something for
+              every taste and style.</p>
+            <ul class="features-list">
+              <li>✓ High-quality prints</li>
+              <li>✓ Wide range of styles</li>
+              <li>✓ Fast worldwide shipping</li>
+            </ul>
+          </div>
+          <img src="https://images.unsplash.com/photo-1733902437666-44c9fe7dfb55?w=500&auto=format&fit=crop&q=60"
+            alt="About PosterSavvy" class="about-image">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h3>PosterSavvy</h3>
+          <p>Transforming spaces with art since 2023. Your one-stop shop for high-quality posters.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="/posters">Posters</a></li>
+            <li><a href="/categories">Categories</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">📱</a>
+            <a href="#" aria-label="Instagram">📸</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

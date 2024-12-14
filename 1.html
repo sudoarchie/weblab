@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rajkiya Engineering College, Bijnor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f0f4f8;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      background-color: #1a365d;
+      color: white;
+      padding: 1rem 0;
+    }
+
+    nav ul {
+      list-style-type: none;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #63b3ed;
+    }
+
+    .banner img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    main {
+      padding: 2rem 0;
+    }
+
+    section {
+      margin-bottom: 2rem;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1,
+    h2 {
+      color: #2c5282;
+      margin-bottom: 1rem;
+    }
+
+    .departments {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .department {
+      background-color: #ebf8ff;
+      padding: 1rem;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .department:hover {
+      transform: translateY(-5px);
+    }
+
+    ul {
+      list-style-position: inside;
+    }
+
+    footer {
+      background-color: #1a365d;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: 2rem;
+    }
+
+    footer a {
+      color: #63b3ed;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav ul li {
+        margin-bottom: 0.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#departments">Departments</a></li>
+          <li><a href="#facilities">Facilities</a></li>
+          <li><a href="#fees">Fees</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="banner">
+      <img src="http://recb.ac.in/img/banner1.png" alt="REC Bijnor Banner">
+    </section>
+
+    <section id="overview">
+      <h1>Rajkiya Engineering College, Bijnor</h1>
+      <p>Rajkiya Engineering College (REC), Bijnor, is an autonomous government engineering college established in 2010
+        under the Special Component Plan by the Government of Uttar Pradesh. It aims to promote technical education
+        among socially and economically weaker sections. The college is affiliated with Dr. A.P.J. Abdul Kalam Technical
+        University (AKTU) and approved by AICTE. REC Bijnor offers B.Tech programs in various disciplines, with
+        admissions based on JEE Main scores.</p>
+    </section>
+
+    <section id="departments">
+      <h2>Departments and Seats</h2>
+      <div class="departments">
+        <div class="department">
+          <h3>Civil Engineering</h3>
+          <p>Seats: 60</p>
+        </div>
+        <div class="department">
+          <h3>Electrical Engineering</h3>
+          <p>Seats: 60</p>
+        </div>
+        <div class="department">
+          <h3>Information Technology (IT)</h3>
+          <p>Seats: 60</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="facilities">
+      <h2>Facilities</h2>
+      <ul>
+        <li><strong>Campus:</strong> Spanning 5.64 acres with modern infrastructure, including academic buildings,
+          laboratories, and a computer center with high-speed internet.</li>
+        <li><strong>Library:</strong> Over 7,600 books and access to digital resources like DELNET.</li>
+        <li><strong>Hostel:</strong> Six hostels with facilities for boys and girls, mess services, and 24-hour
+          internet.</li>
+        <li><strong>Sports:</strong> Indoor and outdoor sports facilities for cricket, football, chess, and more.</li>
+      </ul>
+    </section>
+
+    <section id="fees">
+      <h2>Fee Structure</h2>
+      <ul>
+        <li>Annual tuition: ₹40,000</li>
+        <li>Hostel Fee: ₹10,000/year</li>
+        <li>Exam Fees: ₹7,500/year</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>For more information, visit <a href="http://recb.ac.in">recb.ac.in</a></p>
+    </div>
+  </footer>
+</body>
+
+</html>

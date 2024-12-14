@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Form - Rajkiya Engineering College</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    .banner {
+      width: 100%;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .banner img {
+      width: 100%;
+      max-width: 1200px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #1a237e;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      box-sizing: border-box;
+      border: 2px solid #e0e0e0;
+      border-radius: 4px;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #1a237e;
+    }
+
+    .error {
+      color: #d32f2f;
+      font-size: 0.9em;
+      margin-top: 5px;
+      min-height: 20px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #1a237e;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0d1757;
+    }
+
+    button:disabled {
+      background-color: #9e9e9e;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="banner">
+    <img src="http://recb.ac.in/img/banner1.png" alt="Rajkiya Engineering College Banner">
+  </div>
+
+  <div class="container">
+    <h1>Student Registration Form</h1>
+    <form id="studentForm" onsubmit="return validateForm()">
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        <div id="nameError" class="error"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <div id="emailError" class="error"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" placeholder="Enter your age" required>
+        <div id="ageError" class="error"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="studentId">Student ID:</label>
+        <input type="text" id="studentId" name="studentId" placeholder="Format: AA123456" required>
+        <div id="studentIdError" class="error"></div>
+      </div>
+
+      <button type="submit">Submit Registration</button>
+    </form>
+  </div>
+
+  <script>
+    function validateForm() {
+      let isValid = true;
+
+      // Name validation
+      const name = document.getElementById('name').value.trim();
+      if (name.length < 2) {
+        document.getElementById('nameError').textContent = 'Name must be at least 2 characters long';
+        isValid = false;
+      } else {
+        document.getElementById('nameError').textContent = '';
+      }
+
+      // Email validation
+      const email = document.getElementById('email').value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        document.getElementById('emailError').textContent = 'Please enter a valid email address';
+        isValid = false;
+      } else {
+        document.getElementById('emailError').textContent = '';
+      }
+
+      // Age validation
+      const age = document.getElementById('age').value;
+      if (age < 16 || age > 99) {
+        document.getElementById('ageError').textContent = 'Age must be between 16 and 99';
+        isValid = false;
+      } else {
+        document.getElementById('ageError').textContent = '';
+      }
+
+      // Student ID validation
+      const studentId = document.getElementById('studentId').value.trim();
+      const studentIdRegex = /^[A-Z]{2}\d{6}$/;
+      if (!studentIdRegex.test(studentId)) {
+        document.getElementById('studentIdError').textContent = 'Student ID must be in the format AA123456';
+        isValid = false;
+      } else {
+        document.getElementById('studentIdError').textContent = '';
+      }
+
+      if (isValid) {
+        alert('Form submitted successfully!');
+      }
+
+      return isValid;
+    }
+  </script>
+</body>
+
+</html>
